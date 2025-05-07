@@ -1,0 +1,20 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Original workflow files (unsanitized)
+/*.json
+
+# Only include sanitized workflows
+!/sanitized/*.json
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db 
