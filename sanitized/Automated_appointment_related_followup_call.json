@@ -124,7 +124,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n\n\"from_number\": \"+1 (620) 675-7384\",\n\n\"to_number\": \"{{ $json.output.phone_number }}\",\n\n\"retell_llm_dynamic_variables\": {\n\n\"name\": \"{{ $json.output.name }}\",\n\n\"phone_number\": \"{{ $json.output.phone_number }}\",\n\n\"reason\": \"{{ $json.output.reason }}\",\n\n\"start_time\": \"{{ $json.output.start_time }}\",\n\n\"end_time\": \"{{ $json.output.end_time }}\"\n\n},\n\n\"override_agent_id\": \"agent_1d63f6142c01ee5e8d3332e91e\"\n\n}",
+        "jsonBody": "={\n\n\"from_number\": \"<retellai_no.>\",\n\n\"to_number\": \"{{ $json.output.phone_number }}\",\n\n\"retell_llm_dynamic_variables\": {\n\n\"name\": \"{{ $json.output.name }}\",\n\n\"phone_number\": \"{{ $json.output.phone_number }}\",\n\n\"reason\": \"{{ $json.output.reason }}\",\n\n\"start_time\": \"{{ $json.output.start_time }}\",\n\n\"end_time\": \"{{ $json.output.end_time }}\"\n\n},\n\n\"override_agent_id\": \"agent_<agentid>\"\n\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
