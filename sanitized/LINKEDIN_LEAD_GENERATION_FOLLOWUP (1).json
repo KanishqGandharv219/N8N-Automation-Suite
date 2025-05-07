@@ -215,17 +215,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "competitor",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I/edit#gid=0"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "options": {}
       },
@@ -251,7 +251,7 @@
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "application/json",
-        "body": "={     \"api_key\": \"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\",     \"query\": \"do a compititor analysis on: {{ $json['Company Name'] }}\",     \"search_depth\": \"basic\",     \"include_answer\": false,     \"include_images\": true,     \"include_image_descriptions\": true,     \"include_raw_content\": false,     \"max_results\": 5,     \"include_domains\": [],     \"exclude_domains\": [] }",
+        "body": "={     \"api_key\": \"<tavily_api>\",     \"query\": \"do a compititor analysis on: {{ $json['Company Name'] }}\",     \"search_depth\": \"basic\",     \"include_answer\": false,     \"include_images\": true,     \"include_image_descriptions\": true,     \"include_raw_content\": false,     \"max_results\": 5,     \"include_domains\": [],     \"exclude_domains\": [] }",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -271,7 +271,7 @@
               "id": "SANITIZED_ID",
               "name": "api_key",
               "type": "string",
-              "value": "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"
+              "value": "<tavily_api>"
             }
           ]
         },
@@ -429,10 +429,10 @@
         "operation": "create",
         "documentId": {
           "__rl": true,
-          "value": "1lhDy4KUhAeixzDnMM8nwjGF01Vo7OCPCbFfg3Nn1I14",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lhDy4KUhAeixzDnMM8nwjGF01Vo7OCPCbFfg3Nn1I14/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "title": "research sheet",
         "options": {}
@@ -480,17 +480,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit#gid=0"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -659,17 +659,17 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "resrch",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4/edit#gid=0"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -726,17 +726,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "Linkedin candidate",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit#gid=0"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "options": {}
       },
