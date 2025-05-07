@@ -19,14 +19,14 @@
           "value": "1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc",
           "mode": "list",
           "cachedResultName": "Automated job apply",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc/edit?usp=drivesdk"
+          "cachedResultUrl": "<doc_url_connected_to_your_account>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc/edit#gid=0"
+          "cachedResultUrl": "<doc_url_connected_to_your_account>"
         },
         "options": {}
       },
@@ -67,7 +67,7 @@
     },
     {
       "parameters": {
-        "url": "https://rss.app/feeds/kqh78B5AVN3RSSpR.xml",
+        "url": "<your_rss.app_custom_link.xml>",
         "options": {}
       },
       "type": "n8n-nodes-base.rssFeedRead",
