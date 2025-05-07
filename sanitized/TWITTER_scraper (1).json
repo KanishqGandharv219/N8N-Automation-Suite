@@ -75,17 +75,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU",
+          "value": "<sanitized_id>",
           "mode": "list",
           "cachedResultName": "n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit?usp=drivesdk"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit#gid=0"
+          "cachedResultUrl": "<custom_sheet_url>"
         },
         "columns": {
           "mappingMode": "defineBelow",
