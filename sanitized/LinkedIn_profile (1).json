@@ -38,11 +38,11 @@
           "parameters": [
             {
               "name": "key",
-              "value": "AIzaSyD0820BqWZ5e_wFOHLjZUrLWL7xbHUOsTw"
+              "value": "<Custom google search api>"
             },
             {
               "name": "cx",
-              "value": "5225feae42f444177"
+              "value": "google cx id"
             },
             {
               "name": "q",
