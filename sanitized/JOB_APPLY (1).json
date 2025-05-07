@@ -1,0 +1,230 @@
+{
+  "name": "JOB APPLY",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        20,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc",
+          "mode": "list",
+          "cachedResultName": "Automated job apply",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rtsLB36tJTxoTspZtOa4A4Xc-qojxPA_fz-RXQZ6lOc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Company Email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        420,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "url": "https://rss.app/feeds/kqh78B5AVN3RSSpR.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "maxItems": 25
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        840,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a Google Search Expert. Please convert this job title to\nnatural language on querying the following 3 items: 1) HR email of the company, 2)\nthe company Name and 3) the company summary.\nReturn in JSON format:"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        520,
+        280
+      ],
+      "id": "SANITIZED_ID",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        280
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Gmail",
+      "webhookId": "SANITIZED_UUID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "SANITIZED_UUID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "SANITIZED_INSTANCE_ID"
+  },
+  "id": "SANITIZED_WORKFLOW_ID",
+  "tags": []
+}

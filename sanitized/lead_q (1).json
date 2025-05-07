@@ -1,0 +1,216 @@
+{
+  "name": "lead_q",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Lead Name"
+            },
+            {
+              "name": "Email"
+            },
+            {
+              "name": "Message"
+            },
+            {
+              "name": "Company Information"
+            },
+            {
+              "name": "Qualified",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -880,
+        120
+      ],
+      "id": "SANITIZED_ID",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=We have a new inbound lead and we need you to classify it into either SaaS or development agency category.\n\nHere is the lead information:\nName: {{ $json['Lead Name'] }}\nRequest: {{ $json.Message }}\nCompany Information: \n{{ $json['Company Information'] }}\n\nIf the lead a SaaS company, output 'SaaS'\nIf the lead is a development agency, output 'Agency'"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -660,
+        120
+      ],
+      "id": "SANITIZED_ID",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "SANITIZED_ID",
+              "leftValue": "={{ $json.message.content }}",
+              "rightValue": "Agency",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -280,
+        120
+      ],
+      "id": "SANITIZED_ID",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "email@example.com",
+        "subject": "New Agency Lead",
+        "emailType": "text",
+        "message": "=New agency lead man!! Go gettem: {{ $('When Executed by Another Workflow').item.json['Company Information'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "SANITIZED_ID",
+      "name": "New Agency Lead",
+      "webhookId": "SANITIZED_UUID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "email@example.com",
+        "subject": "New SaaS Lead",
+        "emailType": "text",
+        "message": "=New agency lead man!! Go gettem: {{ $('When Executed by Another Workflow').item.json['Company Information'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        220
+      ],
+      "id": "SANITIZED_ID",
+      "name": "New SaaS Lead",
+      "webhookId": "SANITIZED_UUID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "Lead Name": "Liam",
+          "Email": "email@example.com",
+          "Message": "Agents!!",
+          "Company Information": "Morningside AI is an artificial intelligence development firm focusing on cutting-edge technologies including autonomous agent development, enterprise consulting, and chatbot development. Their commitment to innovation and tech-driven solutions aligns well with Big Boy Recruits' focus on IT and tech talent placements for software-based companies.",
+          "Qualified": true
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "New Agency Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "New SaaS Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "SANITIZED_UUID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "SANITIZED_INSTANCE_ID"
+  },
+  "id": "SANITIZED_WORKFLOW_ID",
+  "tags": []
+}

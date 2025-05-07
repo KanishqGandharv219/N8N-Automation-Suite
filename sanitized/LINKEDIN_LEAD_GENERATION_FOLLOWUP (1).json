@@ -1,0 +1,990 @@
+{
+  "name": "LINKEDIN LEAD GENERATION+FOLLOWUP",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -100
+      ],
+      "id": "SANITIZED_ID",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/code_crafter~apollo-io-scraper/run-sync-get-dataset-items?token=SANITIZED_API_KEY",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"getPersonalEmails\": false,\n    \"getWorkEmails\": true,\n    \"totalRecords\": 500,\n    \"url\": \"https://app.apollo.io/#/people?page=1&sortAscending=false&sortByField=recommendations_score&contactEmailExcludeCatchAll=true&personTitles[]=project%20manager&personLocations[]=Bengaluru%2C%20India\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        380
+      ],
+      "id": "SANITIZED_ID",
+      "name": "HTTP Request",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM",
+          "mode": "list",
+          "cachedResultName": "Linkedin candidate",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "First Name": "={{ $json.firstName }}",
+            "Last Name": "={{ $json.lastName }}",
+            "Email": "={{ $json.emailAddress }}",
+            "Headline": "={{ $json.headline }}",
+            "Linkedin": "={{ $json.linkedInProfileUrl }}",
+            "CompanyID": "={{ $json.companyId }}",
+            "State": "={{ $json.stateName }}",
+            "City": "={{ $json.cityName }}",
+            "Country": "={{ $json.countryName }}",
+            "Company Name": "={{ $json.positionHistory[0].companyName }}",
+            "Company URL": "={{ $json.company.websiteUrl }}",
+            "Linkedin Org URL": "={{ $json.company.linkedInProfileUrl }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Headline",
+              "displayName": "Headline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Linkedin",
+              "displayName": "Linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "Linkedin Org URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "Company URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "CompanyID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "State",
+              "displayName": "State",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Country",
+              "displayName": "Country",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        60,
+        -100
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I",
+          "mode": "list",
+          "cachedResultName": "competitor",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XHf9rOyNMfZjnHglPhbUuNGmVKWum6ZzZk7dTRDg0_I/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -460,
+        500
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={     \"api_key\": \"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\",     \"query\": \"do a compititor analysis on: {{ $json['Company Name'] }}\",     \"search_depth\": \"basic\",     \"include_answer\": false,     \"include_images\": true,     \"include_image_descriptions\": true,     \"include_raw_content\": false,     \"max_results\": 5,     \"include_domains\": [],     \"exclude_domains\": [] }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        100,
+        360
+      ],
+      "id": "SANITIZED_ID",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "SANITIZED_ID",
+              "name": "api_key",
+              "type": "string",
+              "value": "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"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "SANITIZED_ID",
+      "name": "Tavily API Key",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -460,
+        260
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -120,
+        360
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json['Linkedin Org URL'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "HTTP Request2",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        540,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Wait",
+      "webhookId": "SANITIZED_UUID"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        300,
+        -100
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Role:\nYou are an expert in professional business analysis and\nLinkedIn data extraction.\n\nAnalyze the scraped LinkedIn profile data of a company and\nproduce a high-quality, detailed report. Your analysis must\nbe precise, fact-based, structured, and entirely derived\nfrom the provided data.\n\nOutput Structure:\nYour response must be a single string titled \"Company\nLinkedIn\" and divided into exactly three clearly labeled\nsections:\n\nCompany Insights:\n- Summarize the company's stated mission and vision.\n- Explain how the mission or vision aligns with the\ncompany's activities or services, if applicable.\n- Identify any indications of company growth (e.g., new\noffices, product launches, workforce increases).\nNote: Do not categorize mentions of Shows, Events, or\nNominations as \"recent growth.\"\n- Provide specific details of expansion or scaling (e.g.,\n\"Opened a new office in London,\" \"Grew by 25% in the past\nyear\").\n- Retrieve recent posts or updates along with their\ntimestamps (e.g., \"22h,\" \"2w\").\n- Summarize the key topics or points from these updates\n(e.g., \"Announced partnership with XYZ,\" \"Promoted upcoming\nevent\").\n\nBusiness Model:\n- Determine whether the company operates as B2B (business-\nto-business) or B2C (business-to-consumer).\n- Output: Choose only one option based strictly on the\nanalysis.\n\nNumber of Employees:\n- State the company's industry.\n- Provide the approximate number of employees as indicated\non the profile.\n\nAdditional Guidelines:\n- The analysis must be concise and actionable without\nunnecessary filler.\n- Use dates wherever possible to provide chronological\ncontext.\n- Ensure every detail in your response is based solely on the provided LinkedIn profile data."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1200,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Role:  \nYou are an expert in professional email communication and client outreach, specializing in leveraging LinkedIn profile insights to personalize messages.\n\nTask:  \nCompose a highly professional, personalized email to a client using the scraped LinkedIn profile data. Your email must be clear, fact-based, and entirely derived from the provided data, ensuring that the message is both engaging and actionable.\n\nOutput Structure:  \nYour response must be a single string titled **\"Client Email\"** and divided into exactly three clearly labeled sections:\n\n1. **Email Introduction:**  \n   - Craft a professional greeting and a brief introduction that immediately establishes relevance to the recipient.  \n   - Incorporate personalized elements from the LinkedIn profile data (e.g., company mission, recent growth milestones, or key updates) to build rapport.\n\n2. **Value Proposition & Content:**  \n   - Highlight a clear and compelling value proposition that addresses the recipient’s needs based on their industry and recent activity.  \n   - Describe how your service or solution aligns with the company’s mission, growth plans, or challenges, using specifics drawn from the profile data.  \n   - Ensure the body of the email is concise, fact-based, and actionable, utilizing any dated references (e.g., recent updates \"2w ago\") as appropriate.\n\n3. **Call to Action & Closing:**  \n   - End with a clear call to action (e.g., proposing a meeting, call, or further discussion).  \n   - Provide a professional closing that reaffirms your understanding of the client’s needs and invites a prompt response.  \n   - Include appropriate contact details or a scheduling link if applicable.\n\nAdditional Guidelines:  \n- The email must be professional, engaging, and tailored specifically to the insights derived from the provided LinkedIn profile data.  \n- Avoid filler content; every sentence should contribute to a meaningful, client-focused message.  \n- Use dates and precise details whenever possible to add credibility and context.  \n- Ensure every detail in your email is based solely on the provided LinkedIn profile data.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1620,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1620,
+        140
+      ],
+      "id": "SANITIZED_ID",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "documentId": {
+          "__rl": true,
+          "value": "1lhDy4KUhAeixzDnMM8nwjGF01Vo7OCPCbFfg3Nn1I14",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lhDy4KUhAeixzDnMM8nwjGF01Vo7OCPCbFfg3Nn1I14/edit?usp=drivesdk"
+        },
+        "title": "research sheet",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1980,
+        -80
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "SANITIZED_ID",
+              "name": "count",
+              "value": 1,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -460,
+        720
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Set Count"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1inRTQjtFq5bLhnNSqEiRDX2UrBpGYnIKd1ueQmRkpuU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Tweet ID": "={{ $json.tweets[0].id }}",
+            "URL": "={{ $json.tweets[0].url }}",
+            "Content": "={{ $json.tweets[0].text }}",
+            "Likes": "={{ $json.tweets[0].likeCount }}",
+            "Retweets": "={{ $json.tweets[0].retweetCount }}",
+            "Replies": "={{ $json.tweets[0].replyCount }}",
+            "Quotes": "={{ $json.tweets[0].quoteCount }}",
+            "Views": "={{ $json.tweets[0].viewCount }}",
+            "Date": "={{ $json.tweets[0].createdAt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Tweet ID",
+              "displayName": "Tweet ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Content",
+              "displayName": "Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Likes",
+              "displayName": "Likes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Retweets",
+              "displayName": "Retweets",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Replies",
+              "displayName": "Replies",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quotes",
+              "displayName": "Quotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Views",
+              "displayName": "Views",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        280,
+        720
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Add to Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.twitterapi.io/twitter/tweet/advanced_search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json['Company Name'] }}"
+            },
+            {
+              "name": "queryType",
+              "value": "Top"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        720
+      ],
+      "id": "SANITIZED_ID",
+      "name": "HTTP Request3",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4",
+          "mode": "list",
+          "cachedResultName": "resrch",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Sz2fIgxRh6tAsdON_tHO3IiKEoCxI2EhosYEvyQevj4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "URL": "={{ $('Google Sheets4').item.json['Company Name'] }}",
+            "DESCRIPTION": "={{ $json.results[2].content }}"
+          },
+          "matchingColumns": [
+            "URL"
+          ],
+          "schema": [
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SANITIZED_ID",
+              "displayName": "DESCRIPTION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        320,
+        360
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM",
+          "mode": "list",
+          "cachedResultName": "Linkedin candidate",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xjRq8_IzyY2zF80tr-36i8wmblt3zut1najjC-mZEmM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        40,
+        140
+      ],
+      "id": "SANITIZED_ID",
+      "name": "Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SANITIZED_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/supreme_coder~apollo-scraper/run-sync-get-dataset-items?token=SANITIZED_API_KEY",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"count\": 25,\n    \"excludeGuessedEmails\": false,\n    \"excludeNoEmails\": true,\n    \"getEmails\": true,\n    \"searchUrl\": \"https://app.apollo.io/#/people?page=1&sortAscending=false&sortByField=recommendations_score&contactEmailExcludeCatchAll=true&personLocations[]=Bengaluru%2C%20India&personTitles[]=ceo\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        -100
+      ],
+      "id": "SANITIZED_ID",
+      "name": "HTTP Request4",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Tavily API Key": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Count": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Add to Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "SANITIZED_UUID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "SANITIZED_INSTANCE_ID"
+  },
+  "id": "SANITIZED_WORKFLOW_ID",
+  "tags": []
+}
